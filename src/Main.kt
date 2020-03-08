@@ -59,6 +59,8 @@ fun main() {
             articleObject.addProperty("contentType", article.contentType)
             articleObject.addProperty("superTitle", article.superTitle)
             articleObject.addProperty("title", article.title)
+            if (article.genre != null)
+                articleObject.addProperty("genre", article.genre)
             articlesObject.add(articleObject)
         }
 
@@ -96,6 +98,7 @@ private fun fetchArticles(newspaper: String): List<ArticleObject> {
                     blocks[0].attr("contenttype"),
                     blocks[0].getElementsByTag("supertitle")[0].text(),
                     blocks[0].getElementsByTag("title")[0].text(),
+                    if (blocks[0].hasAttr("genre")) blocks[0].attr("genre") else null,
                     blocks[0].attr("author").split(";")
                 )
             )
@@ -117,6 +120,7 @@ data class ArticleObject(
     val contentType: String,
     val superTitle: String,
     val title: String,
+    val genre: String?,
     val authors: List<String>
 ) {
 
