@@ -1,0 +1,1 @@
+A program that searches for authors appearing twice or more in specified ZEITOnline newspapers
